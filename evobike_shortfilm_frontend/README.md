@@ -1,82 +1,67 @@
-# Lightweight React Template for KAVIA
+# Evobike Short Film Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Modern React single-page experience to present a 90s short film with scene timeline, captions, and a final CTA.
 
-## Features
+## Quick Start
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- `npm install`
+- `npm start` then open http://localhost:3000
 
-## Getting Started
+## Video Asset
 
-In the project directory, you can run:
+- A placeholder is referenced at `/assets/evobike_placeholder.mp4`.
+- Place your final cut in `public/assets/evobike_placeholder.mp4` to replace the placeholder.
+- You may also host the video elsewhere and configure a base URL via:
+  - `REACT_APP_FRONTEND_URL=https://your-domain.com` (will resolve to `${REACT_APP_FRONTEND_URL}/assets/evobike_placeholder.mp4`)
 
-### `npm start`
+> TODO: Replace the placeholder with the final video and adjust scene timestamps if the final edit differs.
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Scene Map
 
-### `npm test`
+Timestamps and captions are defined in `src/App.js`:
 
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```
+const SCENES = [
+  { id: 1, start: 0, end: 7, title: 'Hogar feliz', narration: 'Éramos una familia sencilla… pero feliz.' },
+  ...
+  { id: 10, start: 79, end: 90, title: 'Graduación universitaria', narration: 'Evobike. El camino que te lleva a donde de verdad quieres estar.' },
+];
 ```
 
-### Components
+- Adjust `start`/`end` if the final cut differs.
+- The timeline shows markers for each scene; clicking a marker seeks the video.
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## Theme
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+The "Ocean Professional" theme is implemented with CSS variables in `src/App.css`:
+- primary `#2563EB`
+- secondary/success `#F59E0B`
+- error `#EF4444`
+- background `#f9fafb`
+- surface `#ffffff`
+- text `#111827`
+- subtle gradient background
 
-## Learn More
+## Accessibility
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Keyboard navigation supported on scene markers (Enter/Space).
+- Captions use high-contrast chip overlay and aria-live="polite".
+- Buttons have focus outlines.
 
-### Code Splitting
+## Environment Variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+These are optional and safe defaults are provided if not set:
+- `REACT_APP_FRONTEND_URL`
+- `REACT_APP_API_BASE`
+- `REACT_APP_BACKEND_URL`
+- `REACT_APP_WS_URL`
 
-### Analyzing the Bundle Size
+## Where to Update
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Replace video: `public/assets/evobike_placeholder.mp4`
+- Scene timestamps & narrations: `src/App.js` (SCENES array)
+- CTA destination: env variables above or update `FinalCTA` component
 
-### Making a Progressive Web App
+## Build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm run build` to create a production build
